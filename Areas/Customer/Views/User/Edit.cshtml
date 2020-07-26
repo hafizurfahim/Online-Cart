@@ -1,0 +1,75 @@
+﻿@model Online_Cart.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Edit User data";
+}
+<br />
+
+<h2 class="text-info">Add New Product</h2>
+<form asp-action="Edit" method="post" id="User-form">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="UserName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="UserName" class="form-control" readonly="readonly" />
+            </div>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Firstname"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Firstname" class="form-control" />
+            </div>
+            <span asp-validation-for="Firstname" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Lastname"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Lastname" class="form-control" />
+            </div>
+            <span asp-validation-for="Lastname" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Update" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+        <script type="text/javascript">
+    $(function () {
+
+        var save = '@TempData["save"]'
+
+        if (save != "") {
+            alertify.success(save);
+
+        }
+    })
+
+
+        </script>
+
+
+    }
+

@@ -1,0 +1,52 @@
+﻿@using Online_Cart.Models;
+@using X.PagedList.Web.Common
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Products>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+
+<br />
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+
+        <div class="col-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">
+                        <label style="font-size:25px; color : brown"><b>@product.Name</b> </label>
+
+                    </h4>
+
+                </div>
+                <img src="~/@product.Image" alt="Card-Img" class="card-img-top" style="height : 300px" />
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center  ">
+                        <div class="btn-group">
+                            <label style="font-size:20px; color: #ff0000;"><b>Price: @product.Price</b></label>
+                        </div>
+                        <a asp-action="Details" asp-controller="Home" asp-route-id="@product.Id" class="btn  pull-right btn-outline-info ">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+
+
+
+</div>
+<div>
+
+    @Html.PagedListPager(Model, c => Href("~/Customer/Home/Index?page=" + c),PagedListRenderOptionsBase.MinimalWithItemCountText)
+
+</div>

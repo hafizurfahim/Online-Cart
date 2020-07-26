@@ -1,0 +1,104 @@
+﻿@model Online_Cart.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Add New User";
+}
+<br />
+
+<h2 class="text-info">Add New Product</h2>
+<form asp-action="Create" method="post" id="User-form" enctype="multipart/form-data">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="UserName"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="UserName" class="form-control" />
+            </div>
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="PasswordHash"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="PasswordHash" class="form-control" type="password" />
+            </div>
+            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Firstname"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Firstname" class="form-control" />
+            </div>
+            <span asp-validation-for="Firstname" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Lastname"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Lastname" class="form-control" />
+            </div>
+            <span asp-validation-for="Lastname" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+        $(document).ready(function () {
+            $("#User-form").validate({
+                rules: {
+                    UserName: {
+                        required: true,
+
+                    },
+                    
+                    PasswordHash: {
+                        required: true,
+
+                    },
+                    Firstname: {
+                        required: true,
+
+                    },
+                    Lastname: {
+                        required: true,
+
+                    },
+                },
+
+                messages: {
+                    UserName: "Enter your Email !!!",
+                    PasswordHash : "Enter Your Password !!!",
+                    Firstname: "Enter your First name !! ",
+                    Lastname : "Enter your Last Name "
+                        
+                    }
+
+
+             
+            });
+        });
+
+    </script>
+
+
+}
+

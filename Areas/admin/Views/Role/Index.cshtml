@@ -1,0 +1,76 @@
+﻿
+@using Online_Cart.Models;
+@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "Role List";
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Role</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; User List</a>
+    </div>
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+
+            <th>
+                Name
+            </th>
+           
+           
+            <th></th>
+            <th></th>
+
+        </tr>
+        @foreach (var item in ViewBag.role)
+        {
+    <tr>
+        <td>@item.Name</td>
+        <td>
+        <td style="width: 150px">
+            <div class="btn-group">
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">
+                    <i class="far fa-edit"></i>
+                </a>
+
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </div>
+        </td>
+        </td>
+
+
+    </tr>
+        }
+    </table>
+</div>
+
+
+
+@section scripts{
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <script type="text/javascript">
+    $(function () {
+
+        var save = '@TempData["save"]'
+
+        if (save != "" && save!=null) {
+            alertify.success(save);
+
+        }
+    })
+
+
+    </script>
+
+
+}
